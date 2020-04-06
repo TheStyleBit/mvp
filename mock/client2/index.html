@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client2</title>
+    <script>
+        // TODO secure id from abuse
+        // must be unique id for specified application
+        const sb_ws = new WebSocket("ws://localhost:8080?id=channel2")
+
+        const msg = {
+            type: "get-rules",
+            text: "open connection",
+            id:   2, //applicationId
+            date: Date.now()
+        }
+
+
+        sb_ws.onopen = e => {
+            // send AKW
+            sb_ws.send(JSON.stringify(msg))
+        }
+
+        // receive data
+        sb_ws.onmessage = e => {
+            console.log(e.data)
+        }
+
+        const sendWsMsg = () => {
+            const value = document.getElementById("client2-input").value
+            const payload = {
+                value,
+                type: 'broadcast'
+            }
+            sb_ws.send(JSON.stringify(payload))
+        }
+
+    </script>
+</head>
+<body>
+    <button onclick="sendWsMsg()">Send WS MSG</button>
+    <input id="client2-input" />
+</body>
+</html>

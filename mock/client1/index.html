@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client1</title>
+    <script>
+        const wss = new WebSocket("ws://localhost:8080?id=channel1")
+
+        const msg = {
+            type: "get-rules",
+            text: "open connection",
+            id:   1, //applicationId
+            date: Date.now()
+        }
+
+
+        wss.onopen = e => {
+            // send AKW
+            wss.send(JSON.stringify(msg))
+        }
+
+        // receive data
+        wss.onmessage = e => {
+            console.log(e.data)
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
