@@ -12,8 +12,7 @@ router.post('/', (req, res) => {
         formula
     })
     .then(handleCreate(res))
-    .then(() => publishRule({ name, formula }))
-
+    // .then(() => publishRule({ name, formula }))
 })
 
 router.get('/', (req, res) => {
