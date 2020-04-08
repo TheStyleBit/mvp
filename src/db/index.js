@@ -9,6 +9,7 @@ const DB = (function () {
             if (!sequelize) {
                 sequelize = new Sequelize(PG.DB, PG.USERNAME, PG.PASSWORD, {
                     host: PG.HOST,
+                    port: PG.PORT,
                     dialect: 'postgres'
                 })
             }
