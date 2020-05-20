@@ -1,30 +1,78 @@
 const router = require('express').Router()
 const { RuleModel } = require('../models')
-const { handleCreate } = require('../utils/response-handler')
+
+const {
+    handleCreate,
+    handleFailure,
+    handleUpdate,
+    handleDelete,
+    handleGet
+} = require('../utils/response-handler')
+
 const { publishRule } = require('../db/redis')
 
 router.post('/', (req, res) => {
-    const { applicationId, name, formula } = req.body
+    const { applicationId = 1, key, value } = req.body
 
     return RuleModel.create( {
         applicationId,
-        name,
-        formula
+        key,
+        value
     })
     .then(handleCreate(res))
-    // .then(() => publishRule({ name, formula }))
+    .catch(handleFailure(res))
 })
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
+    const { id } = req.params
+    const query = {
+        where: {
+            id
+        },
+        raw: true
+    }
 
+    return RuleModel.findOne(query)
+        .then(handleGet(res))
+        .catch(handleFailure(res))
 })
 
-router.put('/', (req, res) => {
+router.patch('/:id', async (req, res) => {
+    const { key, value } = req.body
+    const { id } = req.params
 
+    const query = {
+        where: {
+            id
+        }
+    }
+
+    const rule = await RuleModel.findOne(query)
+
+    if (typeof key !== 'undefined') {
+        rule.key = key
+    }
+
+    if (typeof value !== 'undefined') {
+        rule.value = value
+    }
+
+    return rule.save()
+        .then(handleUpdate(res))
+        .catch(handleFailure(res))
 })
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
+    const { id } = req.params
+    const query = {
+        where: {
+            id
+        }
+    }
 
+    return RuleModel.destroy(query)
+        .then(handleDelete(res))
+        .catch(handleFailure(res))
 })
 
 module.exports = router

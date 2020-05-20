@@ -6,7 +6,7 @@
     - `docker pull dockage/phppgadmin` [you need to have preinstalled docker]
     - `docker run --name='phppgadmin' -d --publish=80:80 dockage/phppgadmin:latest`
     - enter into container `docker exec -it containerID sh`
-    - `vi /var/www/config.inc.php`
+    - `vi /var/www/conf/config.inc.php`
     - append lines
         - `$conf['servers'][1]['desc'] = 'Postgres Google Cloud'`;
         - `$conf['servers'][1]['host'] = 'google cloud postgres vm instance PUBLIC ip'`;

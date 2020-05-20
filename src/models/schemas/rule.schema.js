@@ -6,12 +6,12 @@ const RuleSchema = {
         primaryKey: true,
         autoIncrement: true
     },
-    name: {
+    key: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    formula: {
-        type: Sequelize.STRING,
+    value: {
+        type: Sequelize.JSON,
         allowNull: false
     },
     applicationId: {
