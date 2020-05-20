@@ -1,5 +1,3 @@
-# Sites Endpoints ∆
-
 ## Table of Contents
 
 
