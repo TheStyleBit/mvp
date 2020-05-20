@@ -8,7 +8,9 @@ router.use('/user', userApi)
 /**
  * API endpoints with browser authorization.
  */
-router.use(AuthMiddleware.verifyToken)
+
+/* commented out for testing */
+// router.use(AuthMiddleware.verifyToken)
 
 router.use('/rule', ruleApi)
 
