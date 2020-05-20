@@ -4,6 +4,10 @@
 
 
 * [POST /rule](#create-rule)
+* [GET /rule/:id](#get-rule)
+* [DELETE /rule/:id](#delete-rule)
+* [PATCH /rule/:id](#patch-rule)
+
 ### POST /rule
 
 <a name="create-rule"></a>
@@ -15,7 +19,8 @@
 | applicationId | body   | ✔        | 1       | integer  |
 
 
-* [GET /rule](#get-rule)
+
+
 ### GET /rule/:id
 
 <a name="get-rule"></a>
@@ -25,7 +30,7 @@
 | id            | params | ✔        | ✘       | integer  |
 
 
-* [PATCH /rule](#patch-rule)
+
 ### PATCH /rule/:id
 
 <a name="create-rule"></a>
@@ -36,7 +41,7 @@
 | key           | body   | ✘        | ✘       | string   |
 | value         | body   | ✘        | ✘       | JSON     |
 
-* [DELETE /rule](#delete-rule)
+
 ### DELETE /rule/:id
 
 <a name="delete-rule"></a>
