@@ -33,7 +33,7 @@
 
 ### PATCH /rule/:id
 
-<a name="create-rule"></a>
+<a name="patch-rule"></a>
 
 | Parameter     | In     | Required | Default |  Type    |
 |---------------|--------|----------|---------|----------|
