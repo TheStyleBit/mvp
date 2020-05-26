@@ -2,17 +2,19 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const morgan = require('morgan')
 
-// app.use(express.urlencoded({ extended: false }))
-// app.use(express.json())
+/**
+ * Middleware which setups the `morgan` logger.
+ */
+app.use(morgan('dev'))
 
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE']
-}))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
-app.use(bodyParser.urlencoded({ limit: '5mb', extended: false }))
-app.use(bodyParser.json({ limit: '5mb' }))
+// app.use(cors())
+// app.use(bodyParser.urlencoded({ limit: '5mb', extended: false }))
+// app.use(bodyParser.json({ limit: '5mb' }))
 
 const health = require('./api/health.api')
 const api = require('./api')
