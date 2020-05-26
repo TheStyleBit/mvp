@@ -1,6 +1,5 @@
 ## Table of Contents
 
-
 * [POST /rule](#create-rule)
 * [GET /rule/:id](#get-rule)
 * [DELETE /rule/:id](#delete-rule)
