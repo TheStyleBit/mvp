@@ -51,7 +51,8 @@
 ```
 server {
  listen 80;
- server_name 35.202.199.247; # VM_IP_ADDRESS
+ # server_name 35.202.199.247; # VM_IP_ADDRESS
+ server_name stylebit.live;
 
  location / {
    proxy_pass http://localhost:8080; # Node App port
