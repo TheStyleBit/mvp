@@ -56,6 +56,8 @@ server {
  location / {
    proxy_pass http://localhost:8080; # Node App port
    proxy_http_version 1.1;
+   proxy_set_header   X-Forwarded-For $remote_addr;
+   add_header Access-Control-Allow-Origin *;
    proxy_set_header Upgrade $http_upgrade;
    proxy_set_header Connection 'upgrade';
    proxy_set_header Host $host;
