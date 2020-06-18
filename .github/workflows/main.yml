@@ -16,15 +16,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      NODE_ENV: production
-      PG_DB: ${{ secrets.PG_DB }}
-      PG_HOST: ${{ secrets.PG_HOST }}
-      PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-      PG_PORT: ${{ secrets.PG_PORT }}
-      PG_USERNAME: ${{ secrets.PG_USERNAME }}
-      PORT: 8080
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -39,4 +31,13 @@ jobs:
         project_id: stylebit-poc
         service_account_key: ${{ secrets.GCLOUD_AUTH }}
         export_default_credentials: true
+      env:
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        NODE_ENV: production
+        PG_DB: ${{ secrets.PG_DB }}
+        PG_HOST: ${{ secrets.PG_HOST }}
+        PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+        PG_PORT: ${{ secrets.PG_PORT }}
+        PG_USERNAME: ${{ secrets.PG_USERNAME }}
+        PORT: 8080
     - run: gcloud app deploy
