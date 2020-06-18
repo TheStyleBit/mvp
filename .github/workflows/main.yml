@@ -40,9 +40,9 @@ jobs:
         PG_PORT: ${{ secrets.PG_PORT }}
         PG_USERNAME: ${{ secrets.PG_USERNAME }}
         PORT: 8080
-    - script:
-        name: echo nodejs information
-        code: |
-          echo node version ${{ secrets.PG_DB }} running
+      - script:
+          name: echo nodejs information
+          code: |
+            echo node version ${{ secrets.PG_DB }} running
 
     - run: gcloud app deploy
