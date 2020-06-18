@@ -1,23 +1,19 @@
 const Sequelize = require('sequelize')
 
-const RuleSchema = {
+const DomainSchema = {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    key: {
+    domain: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    value: {
-        type: Sequelize.JSON,
-        allowNull: false
-    },
-    domain_id: {
+    application_id: {
         type: Sequelize.INTEGER,
         allowNull: false
     }
 }
 
-module.exports = RuleSchema
+module.exports = DomainSchema

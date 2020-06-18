@@ -3,7 +3,6 @@ const sequelize = require('../db').getInstance()
 
 const UserModel =  sequelize.define('User', UserSchema)
 
-
 /**
  * Create new user
  * @param email
@@ -30,8 +29,6 @@ UserModel.getUser = email => {
     }
     return UserModel.findOne( query)
 }
-
-
 
 module.exports = UserModel
 

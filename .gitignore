@@ -106,3 +106,5 @@ dist
 # IDE
 .idea/
 .vscode/
+
+app.local.yaml
