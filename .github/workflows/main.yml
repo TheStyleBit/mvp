@@ -45,7 +45,7 @@ jobs:
 #        PG_PORT: ${{ secrets.PG_PORT }}
 #        PG_USERNAME: ${{ secrets.PG_USERNAME }}
 #        PORT: ${{ secrets.PORT }}
-
-    - uses: actions/gcloud/cli@master
-      with:
-        args: "app deploy --quiet --project=stylebit-poc"
+#
+#    - uses: actions/gcloud/cli@master
+#      with:
+#        args: "app deploy --quiet --project=stylebit-poc"
