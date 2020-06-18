@@ -43,15 +43,14 @@ jobs:
         export_default_credentials: true
 
     # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: Inject env varibles to app.yaml
       run: |
-          echo JWT_SECRET: ${JWT_SECRET} >>  app.yaml
-          echo PG_DB: ${{ secrets.PG_DB }}  >> app.yaml
+          echo "  JWT_SECRET: ${{ secrets.JWT_SECRET }}" >> app.yaml
+          echo PG_DB: ${{ secrets.PG_DB }} >> app.yaml
           echo PG_HOST: ${{ secrets.PG_HOST }} >> app.yaml
           echo PG_PASSWORD: ${{ secrets.PG_PASSWORD }} >> app.yaml
           echo PG_PORT: ${{ secrets.PG_PORT }} >> app.yaml
           echo PG_USERNAME: ${{ secrets.PG_USERNAME }} >> app.yaml
           cat app.yaml
-
 
 #    - run: gcloud app deploy
