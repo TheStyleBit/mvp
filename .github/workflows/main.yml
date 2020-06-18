@@ -51,6 +51,5 @@ jobs:
           echo "  PG_PASSWORD: ${{ secrets.PG_PASSWORD }}" >> app.yaml
           echo "  PG_PORT: ${{ secrets.PG_PORT }}" >> app.yaml
           echo "  PG_USERNAME: ${{ secrets.PG_USERNAME }}" >> app.yaml
-          cat app.yaml
 
     - run: gcloud app deploy
