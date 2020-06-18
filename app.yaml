@@ -2,4 +2,7 @@
 runtime: nodejs12
 # [END gae_quickstart_yaml]
 
+env_variables:
+  PORT: 8080
+  NODE_ENV: production
 
