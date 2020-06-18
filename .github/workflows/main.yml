@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Google app engine CI/CD
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -19,13 +19,26 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+    - run: npm i
+    - run: npm test
       
     - uses: actions/gcloud/auth@master
       env:
-        GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}   
-        
+        GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        NODE_ENV: ${{ secrets.NODE_ENV }}
+        PG_DB: ${{ secrets.PG_DB }}
+        PG_HOST: ${{ secrets.PG_HOST }}
+        PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+        PG_PORT: ${{ secrets.PG_PORT }}
+        PG_USERNAME: ${{ secrets.PG_USERNAME }}
+        PORT: ${{ secrets.PORT }}
+
     - uses: actions/gcloud/cli@master
       with:
         args: "app deploy --quiet --project=stylebit-poc"
