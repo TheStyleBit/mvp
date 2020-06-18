@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     env:
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      NODE_ENV: ${{ secrets.NODE_ENV }}
+      NODE_ENV: production
       PG_DB: ${{ secrets.PG_DB }}
       PG_HOST: ${{ secrets.PG_HOST }}
       PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
       PG_PORT: ${{ secrets.PG_PORT }}
       PG_USERNAME: ${{ secrets.PG_USERNAME }}
-      PORT: ${{ secrets.PORT }}
+      PORT: 8080
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
