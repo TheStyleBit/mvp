@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: 12.x
 
@@ -40,4 +40,9 @@ jobs:
         PG_PORT: ${{ secrets.PG_PORT }}
         PG_USERNAME: ${{ secrets.PG_USERNAME }}
         PORT: 8080
+    - script:
+        name: echo nodejs information
+        code: |
+          echo node version ${{ secrets.PG_DB }} running
+
     - run: gcloud app deploy
