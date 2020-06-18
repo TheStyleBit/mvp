@@ -9,7 +9,13 @@ const morgan = require('morgan')
  */
 app.use(morgan('dev'))
 
-app.use(cors())
+app.use(cors({
+    origin: "*",
+    methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: "*",
+    optionsSuccessStatus: 200
+}))
+
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: false }))
 app.use(bodyParser.json({ limit: '5mb' }))
 
