@@ -35,14 +35,15 @@ jobs:
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
         NODE_ENV: production
         PG_DB: ${{ secrets.PG_DB }}
-        PG_HOST: ${{ secrets.PG_HOST }}
+        PG_HOST: c
         PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
         PG_PORT: ${{ secrets.PG_PORT }}
         PG_USERNAME: ${{ secrets.PG_USERNAME }}
         PORT: 8080
-      - script:
-          name: echo nodejs information
-          code: |
-            echo node version ${{ secrets.PG_DB }} running
+
+        run: |
+          echo node version ${{ secrets.PG_DB }} running
+          echo test, and deploy ${{ secrets.PG_HOST }} your project.
+
 
     - run: gcloud app deploy
