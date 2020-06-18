@@ -24,20 +24,27 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        project_id: stylebit-poc
+        service_account_key: ${{ secrets.GCLOUD_AUTH }}
+        export_default_credentials: true
+    - run: gcloud info
     - run: npm i
-    - run: npm test
-      
-    - uses: actions/gcloud/auth@master
-      env:
-        GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-        NODE_ENV: ${{ secrets.NODE_ENV }}
-        PG_DB: ${{ secrets.PG_DB }}
-        PG_HOST: ${{ secrets.PG_HOST }}
-        PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-        PG_PORT: ${{ secrets.PG_PORT }}
-        PG_USERNAME: ${{ secrets.PG_USERNAME }}
-        PORT: ${{ secrets.PORT }}
+#    - run: npm test
+
+#    - uses: actions/gcloud/auth@master
+#        env:
+#        GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
+#        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+#        NODE_ENV: ${{ secrets.NODE_ENV }}
+#        PG_DB: ${{ secrets.PG_DB }}
+#        PG_HOST: ${{ secrets.PG_HOST }}
+#        PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+#        PG_PORT: ${{ secrets.PG_PORT }}
+#        PG_USERNAME: ${{ secrets.PG_USERNAME }}
+#        PORT: ${{ secrets.PORT }}
 
     - uses: actions/gcloud/cli@master
       with:
