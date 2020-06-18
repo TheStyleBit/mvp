@@ -21,7 +21,6 @@ app.use(bodyParser.json({ limit: '5mb' }))
 
 app.use((req, res, next) => {
     console.log('body', req.body)
-    console.log('params', req.params)
     next()
 })
 

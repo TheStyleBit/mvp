@@ -13,7 +13,7 @@ module.exports.handleCreate = res => data => {
 module.exports.handleFailure = res => e => {
     const result = {
         status: 500,
-        code: 'developer error, contact developer :)',
+        code: e.code || 'developer error, contact developer :)',
         message: e.message
     }
 
