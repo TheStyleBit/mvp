@@ -25,12 +25,8 @@ const auth = {
         const domain = req.headers.host || req.headers.origin
         const { key } = req.query
 
-        console.log('domain: ', domain)
-        console.log('key: ', key)
-
         return checkDomain(key, domain)
             .then(result => {
-                console.log('result: ', result)
                 if (!result || !result[0]) {
                     return next(new Error('invalid domain or key'))
                 }

@@ -5,6 +5,12 @@
 * [DELETE /rule/:id](#delete-rule)
 * [PATCH /rule/:id](#patch-rule)
 
+
+* [POST /domain](#create-domain)
+* [GET /domain/:id](#get-domain)
+* [DELETE /domain/:id](#delete-domain)
+
+
 ### POST /rule
 
 <a name="create-rule"></a>
@@ -42,6 +48,40 @@
 ### DELETE /rule/:id
 
 <a name="delete-rule"></a>
+
+| Parameter     | In     | Required | Default |  Type    |
+|---------------|--------|----------|---------|----------|
+| id            | params | ✔        | ✘       | integer  |
+
+
+
+## Domains 
+
+### POST /domain
+
+<a name="create-domain"></a>
+
+| Parameter     | In     | Required | Default |  Type    |
+|---------------|--------|----------|---------|----------|
+| domain        | body   | ✔        | ✘       | string   |
+| applicationId | body   | ✔        | 1       | integer  |
+
+
+### GET /domain/:id
+
+<a name="get-domain"></a>
+
+| Parameter     | In     | Required | Default |  Type    |
+|---------------|--------|----------|---------|----------|
+| id            | params | ✔        | ✘       | integer  |
+| key           | query  | ✔        | ✘       | string   |
+| host or origin| headers| ✔        | ✘       | string   |
+
+
+
+### DELETE /domain/:id
+
+<a name="domain-rule"></a>
 
 | Parameter     | In     | Required | Default |  Type    |
 |---------------|--------|----------|---------|----------|
