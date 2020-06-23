@@ -6,7 +6,10 @@ name: Google app engine CI/CD
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    ## branches: [ master ]
+    # ignore github actions
+    branches-ignore:
+      - '**'
   pull_request:
     branches: [ master ]
 
