@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { DomainService } = require('../services')
+const { checkDomain } = require('../libs/domain')
 
 const auth = {
     verifyToken: (req, res, next) => {
@@ -23,15 +23,18 @@ const auth = {
 
     checkOrigin: (req, res, next) => {
         const domain = req.headers.host || req.headers.origin
-        const { key } = req.params
+        const { key } = req.query
 
-        return DomainService.checkDomain(key, domain)
-            .then( result => {
-                if (result && result[0]) {
-                    return next()
-                } else {
-                    next(new Error('domain or key do not exists'))
+        console.log('domain: ', domain)
+        console.log('key: ', key)
+
+        return checkDomain(key, domain)
+            .then(result => {
+                console.log('result: ', result)
+                if (!result || !result[0]) {
+                    return next(new Error('invalid domain or key'))
                 }
+                next()
             })
             .catch(next)
     }

@@ -5,6 +5,8 @@ const cors = require('cors')
 const morgan = require('morgan')
 const helmet = require('helmet')
 
+const { ErrorHandlerMiddleware } = require('./middleware')
+
 /**
  * Middleware which setups the `morgan` logger.
  */
@@ -23,7 +25,6 @@ app.use(bodyParser.json({ limit: '5mb' }))
 
 app.use((req, res, next) => {
     console.log('body', req.body)
-    console.log('params', req.params)
     next()
 })
 
@@ -33,7 +34,10 @@ const api = require('./api')
 app.use('/health', health)
 app.use('/api/v1', api)
 
-// const wss = require('./sockets')
-// wss.boot()
+/**
+ * Error Api
+ */
+app.use(ErrorHandlerMiddleware)
+
 
 module.exports = app

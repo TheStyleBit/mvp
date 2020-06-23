@@ -1,5 +1,5 @@
 {
-  "name": "admin-bk",
+  "name": "mvp",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -11,10 +11,8 @@
     "morgan": "1.9.1",
     "pg": "7.17.1",
     "pg-hstore": "2.3.3",
-    "redis": "2.8.0",
     "sequelize": "5.21.3",
-    "uuid": "3.4.0",
-    "ws": "7.2.1"
+    "uuid": "3.4.0"
   },
   "engines": {
     "node": "12.*.*",

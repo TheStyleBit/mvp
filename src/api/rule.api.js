@@ -9,13 +9,12 @@ const {
     handleGet
 } = require('../utils/response-handler')
 
-const { publishRule } = require('../db/redis')
 
 router.post('/', (req, res) => {
-    const { applicationId = 1, key, value } = req.body
+    const { domainId = 1, key, value } = req.body
 
     return RuleModel.create( {
-        applicationId,
+        domainId,
         key,
         value
     })

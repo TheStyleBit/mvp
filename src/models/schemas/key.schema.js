@@ -6,9 +6,10 @@ const DomainSchema = {
         primaryKey: true,
         autoIncrement: true
     },
-    domain_id: {
+    domainId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        field: 'domain_id'
     },
     key: {
         type: Sequelize.STRING,

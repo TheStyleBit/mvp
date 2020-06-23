@@ -1,36 +1,7 @@
-const sequelize = require('../db').getInstance()
 const { DomainModel } = require('../models')
 const { handleGet, handleFailure, handleCreate, handleDelete } = require('../utils/response-handler')
 
 const DomainService = {
-    checkDomain: (req, res, next) => {
-        const sql = `
-            SELECT * FROM "Domain" AS D
-            LEFT JOIN "Keys" AS K
-            ON D.id=K.domain_id
-            WHERE domain=:domain and key=:key
-            `
-
-        const query = {
-            replacements: {
-                domain: domain,
-                key: key
-            },
-            type: sequelize.QueryTypes.SELECT,
-            raw: true
-        }
-
-        return sequelize.query(sql, query)
-            .then(result => {
-                if (result && result[0]) {
-                    return next()
-                } else  {
-                    return next(new Error('invalid domain or key'))
-                }
-            })
-            .catch(next)
-    },
-
     getDomain: (req, res, next) => {
         const { id } = req.params
         const query = {
@@ -40,7 +11,7 @@ const DomainService = {
             raw: true
         }
 
-        return DomainModel.find(query)
+        return DomainModel.findOne(query)
             .then(handleGet(res))
             .catch(handleFailure(res))
     },

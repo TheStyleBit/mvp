@@ -1,0 +1,55 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Google app engine CI/CD
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    env:
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      NODE_ENV: production
+      PG_DB: ${{ secrets.PG_DB }}
+      PG_HOST: ${{ secrets.PG_HOST }}
+      PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+      PG_PORT: ${{ secrets.PG_PORT }}
+      PG_USERNAME: ${{ secrets.PG_USERNAME }}
+      PORT: 8080
+
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - uses: actions/checkout@v2
+      name: Use Node.js 12.x
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        project_id: stylebit-poc
+        service_account_key: ${{ secrets.GCLOUD_AUTH }}
+        export_default_credentials: true
+
+    # Runs a set of commands using the runners shell
+    - name: Inject env varibles to app.yaml
+      run: |
+          echo "  JWT_SECRET: ${{ secrets.JWT_SECRET }}" >> app.yaml
+          echo "  PG_DB: ${{ secrets.PG_DB }}" >> app.yaml
+          echo "  PG_HOST: ${{ secrets.PG_HOST }}" >> app.yaml
+          echo "  PG_PASSWORD: ${{ secrets.PG_PASSWORD }}" >> app.yaml
+          echo "  PG_PORT: ${{ secrets.PG_PORT }}" >> app.yaml
+          echo "  PG_USERNAME: ${{ secrets.PG_USERNAME }}" >> app.yaml
+
+    - run: gcloud app deploy

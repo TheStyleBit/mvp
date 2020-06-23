@@ -14,9 +14,10 @@ const RuleSchema = {
         type: Sequelize.JSON,
         allowNull: false
     },
-    domain_id: {
+    domainId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        field: 'domain_id'
     }
 }
 

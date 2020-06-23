@@ -10,9 +10,10 @@ const DomainSchema = {
         type: Sequelize.STRING,
         allowNull: false
     },
-    application_id: {
+    applicationId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        field: 'application_id'
     }
 }
 

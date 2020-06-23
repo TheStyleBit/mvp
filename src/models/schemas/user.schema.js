@@ -10,9 +10,10 @@ const UserSchema = {
         type: Sequelize.STRING,
         allowNull: false
     },
-    role_id: {
+    roleId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        field: 'role_id'
     },
     password: {
         type: Sequelize.STRING,
